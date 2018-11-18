@@ -1,63 +1,68 @@
 <?php
-// including the database connection file
-include_once("config.php");
+	// including the database connection file
+	include_once("config.php");
 
-if(isset($_POST['update']))
-{
+	if(isset($_POST['update'])) {
 
-	$id = mysqli_real_escape_string($conn, $_POST['id']);
+		$id = mysqli_real_escape_string($conn, $_POST['id']);
+		$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+		$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+		$email = mysqli_real_escape_string($conn, $_POST['email']);
+		$msg = mysqli_real_escape_string($conn, $_POST['message']);
 
-	$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-	$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-	$email = mysqli_real_escape_string($conn, $_POST['email']);
-	$msg = mysqli_real_escape_string($conn, $_POST['message']);
+		// checking empty fields
+		if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
 
-	// checking empty fields
-	if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
+			if(empty($firstname)) {
+				echo "<p class='error'>Name field is empty.</p><br/>";
+			}
 
-		if(empty($firstname)) {
-			echo "<font color='red'>Name field is empty.</font><br/>";
+			if(empty($lastname)) {
+				echo "<p class='error'>Age field is empty.</p><br/>";
+			}
+
+			if(empty($email)) {
+				echo "<p class='error'>Email field is empty.</p><br/>";
+			}
+
+			if(empty($msg)) {
+				echo "<p class='error'>Message field is empty.</p><br/>";
+			}
+
+		} else {
+			//updating the table
+			$result = mysqli_query($conn, "UPDATE users SET firstname='$firstname',lastname='$lastname',email='$email',message='$msg' WHERE id=$id");
+
+			//redirectig to the display page (index.php)
+			header("Location: index.php");
 		}
-
-		if(empty($lastname)) {
-			echo "<font color='red'>Age field is empty.</font><br/>";
-		}
-
-		if(empty($email)) {
-			echo "<font color='red'>Email field is empty.</font><br/>";
-		}
-
-		if(empty($msg)) {
-			echo "<font color='red'>Message field is empty.</font><br/>";
-		}
-
-	} else {
-		//updating the table
-		$result = mysqli_query($conn, "UPDATE users SET firstname='$firstname',lastname='$lastname',email='$email',message='$msg' WHERE id=$id");
-
-		//redirectig to the display page. In our case, it is index.php
-		header("Location: index.php");
 	}
-}
 ?>
+
 <?php
-//getting id from url
-$id = $_GET['id'];
+	//getting id from url
+	$id = $_GET['id'];
 
-//selecting data associated with this particular id
-$result = mysqli_query($conn, "SELECT * FROM users WHERE id=$id");
+	//selecting data associated with this particular id
+	$result = mysqli_query($conn, "SELECT * FROM users WHERE id=$id");
 
-while($res = mysqli_fetch_array($result))
-{
-	$firstname = $res['firstname'];
-	$lastname = $res['lastname'];
-	$email = $res['email'];
-	$msg = $res['message'];
-}
+	while($res = mysqli_fetch_array($result)) {
+		$firstname = $res['firstname'];
+		$lastname = $res['lastname'];
+		$email = $res['email'];
+		$msg = $res['message'];
+	}
 ?>
-<html>
+
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Edit Data</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>

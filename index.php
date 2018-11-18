@@ -3,13 +3,17 @@
 include_once("config.php");
 
 //fetching data in descending order (lastest entry first)
-//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
 $result = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC"); // using mysqli_query instead
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Homepage</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -24,16 +28,17 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC"); // using 
 		<td>Message</td>
 		<td>Update</td>
 	</tr>
+
+
 	<?php
-	//while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array
-	while($res = mysqli_fetch_array($result)) {
-		echo "<tr>";
-		echo "<td>".$res['firstname']."</td>";
-		echo "<td>".$res['lastname']."</td>";
-		echo "<td>".$res['email']."</td>";
-		echo "<td>".$res['message']."</td>";
-		echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
-	}
+		while($res = mysqli_fetch_array($result)) {
+			echo "<tr>";
+			echo "<td>".$res['firstname']."</td>";
+			echo "<td>".$res['lastname']."</td>";
+			echo "<td>".$res['email']."</td>";
+			echo "<td>".$res['message']."</td>";
+			echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+		}
 	?>
 	</table>
 </body>
