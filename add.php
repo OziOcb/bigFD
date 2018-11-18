@@ -10,7 +10,7 @@
 
 <body>
 	<?php
-	//including the database connection file
+	// Include the database connection file
 	include_once("config.php");
 
 		if(isset($_POST['Submit'])) {
@@ -19,7 +19,7 @@
 			$email = mysqli_real_escape_string($conn, $_POST['email']);
 			$msg = mysqli_real_escape_string($conn, $_POST['message']);
 
-			// checking empty fields
+			// Check empty input fields
 			if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
 
 				if(empty($firstname)) {
@@ -38,20 +38,30 @@
 					echo "<p class='error'>Message field is empty.</p><br/>";
 				}
 
-				//link to the previous page
+				// Link to the previous page
 				echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 				exit();
 
 			} else {
-				// if all the fields are filled (not empty)
 
-				//insert data to database
-				$result = mysqli_query($conn, "INSERT INTO users(firstname,lastname,email,message) VALUES('$firstname','$lastname','$email','$msg')");
+				// If all the input fields are filled (not empty)
+				// Check if the email is valid
+				if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
 
-				//display success message
-				echo "<font class='success'>Data added successfully.";
-				echo "<br/><a href='index.php'>View Result</a>";
-				exit();
+					echo "<p class='error'>Email address is invalid.</p><br/>";
+					// Link to the previous page
+					echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+					exit();
+
+				} else {
+
+					// Insert data to database
+					$result = mysqli_query($conn, "INSERT INTO users(firstname,lastname,email,message) VALUES('$firstname','$lastname','$email','$msg')");
+					// Display success message
+					echo "<p class='success'>Data added successfully.</p>";
+					echo "<br/><a href='index.php'>View Result</a>";
+					exit();
+				}
 			}
 		}
 	?>
