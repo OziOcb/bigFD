@@ -21,33 +21,43 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC"); // using 
 </head>
 
 <body>
-	<div class="container">
-		<a class="badge badge-primary p-3 my-3" href="add.html">Add New Data</a>
+	<div class="container pb-2">
 
-		<table class="table">
-			<thead class="thead-dark">
-				<tr>
-					<th scope="col">Firstname</th>
-					<th scope="col">Lastname</th>
-					<th scope="col">Email</th>
-					<th scope="col">Message</th>
-					<th scope="col">Update</th>
-				</tr>
-			</thead>
-			<tbody>
+		<!-- Header -->
+		<header class="jumbotron text-light text-center">
+			<h1 class="display-4 mb-3">Junior PHP Developer Task</h1>
+			<p class="lead">MySQL Display</p>
+			<p class="my-5">This page displays all submissions made to the MySQL database.</p>
+			<a class="btn btn-success btn-lg" href="add.html" role="button">Add New Data</a>
+		</header>
 
-				<?php
-					while($res = mysqli_fetch_array($result)) {
-						echo "<tr>";
-						echo "<td>".$res['firstname']."</td>";
-						echo "<td>".$res['lastname']."</td>";
-						echo "<td>".$res['email']."</td>";
-						echo "<td>".$res['message']."</td>";
-						echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"includes/delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
-					}
-				?>
-			</tbody>
-		</table>
+		<!-- Table -->
+		<section class="table-responsive">
+			<table class="table table-striped table-hover">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col">Firstname</th>
+						<th scope="col">Lastname</th>
+						<th scope="col">Email</th>
+						<th scope="col">Message</th>
+						<th scope="col">Update</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<?php
+						while($res = mysqli_fetch_array($result)) {
+							echo "<tr>";
+							echo "<th scope='row'>".$res['firstname']."</th>";
+							echo "<td>".$res['lastname']."</td>";
+							echo "<td>".$res['email']."</td>";
+							echo "<td>".$res['message']."</td>";
+							echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"includes/delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+						}
+					?>
+				</tbody>
+			</table>
+		</section>
 	</div>
 
 	<!-- Bootstrap JS & JQuery -->
