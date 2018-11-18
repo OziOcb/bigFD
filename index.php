@@ -1,6 +1,6 @@
 <?php
 //including the database connection file
-include_once("config.php");
+include_once("includes/dbh.inc.php");
 
 //fetching data in descending order (lastest entry first)
 $result = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC"); // using mysqli_query instead
@@ -37,7 +37,7 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC"); // using 
 			echo "<td>".$res['lastname']."</td>";
 			echo "<td>".$res['email']."</td>";
 			echo "<td>".$res['message']."</td>";
-			echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
+			echo "<td><a href=\"edit.php?id=$res[id]\">Edit</a> | <a href=\"includes/delete.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Delete</a></td>";
 		}
 	?>
 	</table>

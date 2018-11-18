@@ -14,7 +14,7 @@
 -->
 <?php
 	// Include the database connection file
-	include_once("config.php");
+	include_once("includes/dbh.inc.php");
 
 	if(isset($_POST['update'])) {
 
