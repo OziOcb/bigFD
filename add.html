@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Add Data</title>
 
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 	<!-- Bootstrap CSS -->
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<!-- My CSS -->
@@ -14,35 +16,61 @@
 
 <body>
 	<div class="container p-0 p-sm-2 bg-light">
-		<div class="text-center">
+		
+		<header class="text-center">
 			<h1 class="display-4 mb-3">Add New Data</h1>
 			<a class="btn btn-danger btn-lg font-weight-bold border-0" href="index.php">Cancel</a>
-		</div>
+		</header>
 
-		<form action="add.php" method="post" name="form1">
-			<table width="25%" border="0">
-				<tr>
-					<td>Firstname</td>
-					<td><input type="text" name="firstname"></td>
-				</tr>
-				<tr>
-					<td>Lastname</td>
-					<td><input type="text" name="lastname"></td>
-				</tr>
-				<tr>
-					<td>Email</td>
-					<td><input type="text" name="email"></td>
-				</tr>
-				<tr>
-					<td>Message</td>
-					<td><textarea type="text" name="message" rows="10" cols="50"></textarea></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><button type="submit" name="Submit">Add</button></td>
-				</tr>
-			</table>
-		</form>
+		<section class="wrapper">
+			<form class="form" action="add.php" method="post" name="form1">
+				
+				<div class="form__group form-group">
+					<label class="sr-only" for="reg-form__firstname">Firstname</label>
+					<div class="input input-group">
+						<div class="input-group-prepend">
+							<div class="input__group-text input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+						</div>
+						<input name="firstname" class="input__input form-control" type="text" id="reg-form__firstname" aria-describedby="user firstname" placeholder="Firstname" required="required"/>
+					</div>
+				</div>
+
+				<div class="form__group form-group">
+					<label class="sr-only" for="reg-form__lastname">Lastname</label>
+					<div class="input input-group">
+						<div class="input-group-prepend">
+							<div class="input__group-text input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+						</div>
+						<input name="lastname" class="input__input form-control" type="text" id="reg-form__lastname" aria-describedby="user lastname" placeholder="Lastname" required="required"/>
+					</div>
+				</div>
+				
+				<div class="form__group form-group">
+					<label class="sr-only" for="reg-form__email">Email</label>
+					<div class="input input-group">
+						<div class="input-group-prepend">
+							<div class="input__group-text input-group-text">
+								<span class="fas fa-envelope"></span>
+							</div>
+						</div>
+						<input name="email" class="input__input form-control" type="email" id="reg-form__email" aria-describedby="user email" placeholder="Email" required="required"/>
+					</div>
+				</div>
+				
+				<div class="form__group form-group">
+					<label class="sr-only" for="reg-form__email">Email</label>
+					<textarea name="message" class="input__input form-control" type="text" id="reg-form__email" aria-describedby="your message" placeholder="Your message" rows="10" cols="50" required="required"/></textarea>
+				</div>
+
+				<button name="Submit" class="form__btn btn" type="submit">Add</button>
+
+			</form>
+		</section>
+
 	</div>
 </body>
 </html>

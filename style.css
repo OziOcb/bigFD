@@ -1,7 +1,15 @@
-body {
-  background: #333333;
+/* ──── base ───────────────────────────────────────────────────────────────────────────── */
+html {
+  font-size: 62.5%;
 }
 
+body {
+  background: #333333;
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+/* ────  ───────────────────────────────────────────────────────────────────────────── */
 .jumbotron {
   background: url('https://images.unsplash.com/photo-1490822061517-61b5e64bf21c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f913e2f9c6555c1ba5c7d19e3a151b2e&auto=format&fit=crop&w=1050&q=80') no-repeat center center;
   background-size: cover;
@@ -9,12 +17,14 @@ body {
 
 .header__btn {
   background: #B2D548;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
 .header__btn:hover {
   background: #28A9C9;
 }
 
+/* ──── messages ───────────────────────────────────────────────────────────────────────────── */
 .error {
   color: red;
   margin: 0;
@@ -22,4 +32,68 @@ body {
 
 .success {
   color: green;
+}
+
+/* ──── .form ───────────────────────────────────────────────────────────────────────────── */
+.wrapper {
+  margin: 1rem;
+}
+
+.form {
+  background: #f4f4f4;
+  padding: 2rem;
+  border: .2rem solid rgba(0, 0, 0, 0.2);
+}
+.form__group {
+  margin-bottom: 1rem;
+  background: linear-gradient(0deg, #ededed, #f4f4f4);
+  border: 1px solid #c3c3c3;
+}
+.form__group--last {
+  margin-bottom: 1.4rem;
+}
+.form__btn {
+  width: 100%;
+  padding: 1rem 0;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  background: #B2D548;
+  border: 1px solid #66911e;
+}
+
+.form__btn:hover {
+  background: #28A9C9;
+}
+
+/* ──── .input ───────────────────────────────────────────────────────────────────────────── */
+.input__group-text {
+  background: transparent;
+  width: 6rem;
+  border: none;
+  position: relative;
+}
+.input__group-text::after {
+  content: "";
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+  width: 0.1rem;
+  height: 3rem;
+  background: #c3c3c3;
+}
+.input__group-text > span {
+  color: rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+  font-size: 2rem;
+}
+.input__input {
+  background: transparent;
+  padding: 2rem 2rem;
+  font-size: 1.6rem;
+  border: none;
+}
+.input__input::placeholder {
+  opacity: 0.7;
 }
