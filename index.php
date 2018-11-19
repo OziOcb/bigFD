@@ -21,14 +21,14 @@ $result = mysqli_query($conn, "SELECT * FROM users ORDER BY id DESC"); // using 
 </head>
 
 <body>
-	<div class="container pb-2">
+	<div class="container p-0 p-sm-2 bg-light">
 
 		<!-- Header -->
-		<header class="jumbotron text-light text-center">
+		<header class="jumbotron text-light text-center rounded-0">
 			<h1 class="display-4 mb-3">Junior PHP Developer Task</h1>
 			<p class="lead">MySQL Display</p>
 			<p class="my-5">This page displays all submissions made to the MySQL database.</p>
-			<a class="btn btn-success btn-lg" href="add.html" role="button">Add New Data</a>
+			<a class="header__btn btn btn-success btn-lg font-weight-bold border-0" href="add.html" role="button">Add New Data</a>
 		</header>
 
 		<!-- Table -->
