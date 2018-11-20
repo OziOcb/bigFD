@@ -78,6 +78,9 @@ body {
 }
 .form__group {
   margin-bottom: 1rem;
+  background: -webkit-gradient(linear, left bottom, left top, from(#ededed), to(#f4f4f4));
+  background: -webkit-linear-gradient(bottom, #ededed, #f4f4f4);
+  background: -o-linear-gradient(bottom, #ededed, #f4f4f4);
   background: linear-gradient(0deg, #ededed, #f4f4f4);
   border: 1px solid #c3c3c3;
 }
@@ -125,6 +128,15 @@ body {
   padding: 2rem 2rem;
   font-size: 1.6rem;
   border: none;
+}
+.input__input::-webkit-input-placeholder {
+  opacity: 0.7;
+}
+.input__input:-ms-input-placeholder {
+  opacity: 0.7;
+}
+.input__input::-ms-input-placeholder {
+  opacity: 0.7;
 }
 .input__input::placeholder {
   opacity: 0.7;
