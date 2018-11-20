@@ -18,7 +18,7 @@
 
 		<!-- ──── Header ───────────────────────────────────────────────────────────────────────────── -->
 		<header class="header jumbotron">
-			<h1 class="header__title">Junior PHP Developer Task</h1>
+			<h1 class="header__title">Add New Data</h1>
 		</header>
 
 		<?php
