@@ -15,82 +15,8 @@
 </head>
 
 <body>
-	<!-- Update aready passed value -->
-	<?php
-		// Include the database connection file
-		include_once("includes/dbh.inc.php");
 
-		if(isset($_POST['update'])) {
-
-			$id = mysqli_real_escape_string($conn, $_POST['id']);
-			$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-			$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-			$email = mysqli_real_escape_string($conn, $_POST['email']);
-			$msg = mysqli_real_escape_string($conn, $_POST['message']);
-
-			// Check empty fields
-			if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
-
-				if(empty($firstname)) {
-					echo "<p class='error'>Name field is empty.</p><br/>";
-				}
-
-				if(empty($lastname)) {
-					echo "<p class='error'>Age field is empty.</p><br/>";
-				}
-
-				if(empty($email)) {
-					echo "<p class='error'>Email field is empty.</p><br/>";
-				}
-
-				if(empty($msg)) {
-					echo "<p class='error'>Message field is empty.</p><br/>";
-				}
-
-				// Link to the previous page
-				echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-				exit();
-
-			} else {
-				// If all the input fields are filled (not empty)
-				// Check if the email is valid
-				if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
-
-					echo "<p class='error'>Email address is invalid.</p><br/>";
-					// Link to the previous page
-					echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-					exit();
-
-				} else {
-
-					// Update the table
-					$result = mysqli_query($conn, "UPDATE users SET firstname='$firstname',lastname='$lastname',email='$email',message='$msg' WHERE id=$id");
-
-					// Redirect to the display page (index.php)
-					header("Location: index.php");
-				}
-			}
-		}
-	?>
-
-	<!-- Display already passed values -->
-	<?php
-		// Get id from url
-		$id = $_GET['id'];
-
-		// Select data associated with this particular id
-		$result = mysqli_query($conn, "SELECT * FROM users WHERE id=$id");
-
-		while($res = mysqli_fetch_array($result)) {
-			$firstname = $res['firstname'];
-			$lastname = $res['lastname'];
-			$email = $res['email'];
-			$msg = $res['message'];
-		}
-	?>
-
-	<!-- ──── HTML ───────────────────────────────────────────────────────────────────────────── -->
-	<div class="container p-0 p-sm-2 bg-light">
+	<div class="container p-0 p-sm-2 bg-light text-center">
 
 		<!-- ──── Header ───────────────────────────────────────────────────────────────────────────── -->
 		<header class="header jumbotron">
@@ -99,6 +25,82 @@
 		</header>
 
 		<!-- ──── Form ───────────────────────────────────────────────────────────────────────────── -->
+		<!-- Update aready passed value -->
+		<?php
+			// Include the database connection file
+			include_once("includes/dbh.inc.php");
+
+			if(isset($_POST['update'])) {
+
+				$id = mysqli_real_escape_string($conn, $_POST['id']);
+				$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+				$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+				$email = mysqli_real_escape_string($conn, $_POST['email']);
+				$msg = mysqli_real_escape_string($conn, $_POST['message']);
+
+				// Check empty fields
+				if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
+
+					if(empty($firstname)) {
+						echo "<h2 class='error'>Name field is empty.</h2><br/>";
+					}
+
+					if(empty($lastname)) {
+						echo "<h2 class='error'>Age field is empty.</h2><br/>";
+					}
+
+					if(empty($email)) {
+						echo "<h2 class='error'>Email field is empty.</h2><br/>";
+					}
+
+					if(empty($msg)) {
+						echo "<h2 class='error'>Message field is empty.</h2><br/>";
+					}
+
+					// Link to the previous page
+					echo "<br/><a class='button button--danger btn' href='javascript:self.history.back();'>Go Back</a>";
+					exit();
+
+				} else {
+					// If all the input fields are filled (not empty)
+					// Check if the email is valid
+					if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+						echo "<h2 class='error'>Email address is invalid.</h2><br/>";
+						// Link to the previous page
+						echo "<br/><a class='button button--primary btn' href='javascript:self.history.back();'>Go Back</a>";
+						exit();
+
+					} else {
+
+						// Update the table
+						$result = mysqli_query($conn, "UPDATE users SET firstname='$firstname',lastname='$lastname',email='$email',message='$msg' WHERE id=$id");
+
+						// Display success message
+						echo "<h2 class='success'>Data updated successfully.</h2>";
+						echo "<br/><a class='button button--primary btn' href='index.php'>View Result</a>";
+						exit();
+					}
+				}
+			}
+		?>
+
+		<!-- Display values already passed to the database -->
+		<?php
+			// Get id from url
+			$id = $_GET['id'];
+
+			// Select data associated with this particular id
+			$result = mysqli_query($conn, "SELECT * FROM users WHERE id=$id");
+
+			while($res = mysqli_fetch_array($result)) {
+				$firstname = $res['firstname'];
+				$lastname = $res['lastname'];
+				$email = $res['email'];
+				$msg = $res['message'];
+			}
+		?>
+
 		<section class="wrapper">
 			<form class="form" action="edit.php" method="post" name="form1">
 

@@ -5,65 +5,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Add Data</title>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- My CSS -->
 	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-	<?php
-	// Include the database connection file
-	include_once("includes/dbh.inc.php");
 
-		if(isset($_POST['Submit'])) {
-			$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
-			$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
-			$email = mysqli_real_escape_string($conn, $_POST['email']);
-			$msg = mysqli_real_escape_string($conn, $_POST['message']);
+	<div class="container p-0 p-sm-2 bg-light text-center">
 
-			// Check empty input fields
-			if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
+		<!-- ──── Header ───────────────────────────────────────────────────────────────────────────── -->
+		<header class="header jumbotron">
+			<h1 class="header__title">Junior PHP Developer Task</h1>
+		</header>
 
-				if(empty($firstname)) {
-					echo "<p class='error'>Name field is empty.</p><br/>";
-				}
+		<?php
+		// Include the database connection file
+		include_once("includes/dbh.inc.php");
 
-				if(empty($lastname)) {
-					echo "<p class='error'>Age field is empty.</p><br/>";
-				}
+			if(isset($_POST['Submit'])) {
+				$firstname = mysqli_real_escape_string($conn, $_POST['firstname']);
+				$lastname = mysqli_real_escape_string($conn, $_POST['lastname']);
+				$email = mysqli_real_escape_string($conn, $_POST['email']);
+				$msg = mysqli_real_escape_string($conn, $_POST['message']);
 
-				if(empty($email)) {
-					echo "<p class='error'>Email field is empty.</p><br/>";
-				}
+				// Check empty input fields
+				if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
 
-				if(empty($msg)) {
-					echo "<p class='error'>Message field is empty.</p><br/>";
-				}
+					if(empty($firstname)) {
+						echo "<h2 class='error'>Name field is empty.</h2><br/>";
+					}
 
-				// Link to the previous page
-				echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-				exit();
+					if(empty($lastname)) {
+						echo "<h2 class='error'>Age field is empty.</h2><br/>";
+					}
 
-			} else {
+					if(empty($email)) {
+						echo "<h2 class='error'>Email field is empty.</h2><br/>";
+					}
 
-				// If all the input fields are filled (not empty)
-				// Check if the email is valid
-				if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+					if(empty($msg)) {
+						echo "<h2 class='error'>Message field is empty.</h2><br/>";
+					}
 
-					echo "<p class='error'>Email address is invalid.</p><br/>";
 					// Link to the previous page
-					echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+					echo "<br/><a class='button button--primary btn' href='javascript:self.history.back();'>Go Back</a>";
 					exit();
 
 				} else {
 
-					// Insert data to database
-					$result = mysqli_query($conn, "INSERT INTO users(firstname,lastname,email,message) VALUES('$firstname','$lastname','$email','$msg')");
-					// Display success message
-					echo "<p class='success'>Data added successfully.</p>";
-					echo "<br/><a href='index.php'>View Result</a>";
-					exit();
+					// If all the input fields are filled (not empty)
+					// Check if the email is valid
+					if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+
+						echo "<h2 class='error'>Email address is invalid.</h2><br/>";
+						// Link to the previous page
+						echo "<br/><a class='button button--primary btn' href='javascript:self.history.back();'>Go Back</a>";
+						exit();
+
+					} else {
+
+						// Insert data to database
+						$result = mysqli_query($conn, "INSERT INTO users(firstname,lastname,email,message) VALUES('$firstname','$lastname','$email','$msg')");
+						// Display success message
+						echo "<h2 class='success'>Data added successfully.</h2>";
+						echo "<br/><a class='button button--primary btn' href='index.php'>View Result</a>";
+						exit();
+					}
 				}
 			}
-		}
-	?>
+		?>
+	</div>
 </body>
 </html>
