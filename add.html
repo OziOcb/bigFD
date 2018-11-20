@@ -16,15 +16,18 @@
 
 <body>
 	<div class="container p-0 p-sm-2 bg-light">
-		
-		<header class="text-center">
-			<h1 class="display-4 mb-3">Add New Data</h1>
-			<a class="btn btn-danger btn-lg font-weight-bold border-0" href="index.php">Cancel</a>
+
+		<!-- ──── Header ───────────────────────────────────────────────────────────────────────────── -->
+		<header class="header jumbotron">
+			<h1 class="header__title">Add New Data</h1>
+			<a class="button button--danger btn" href="index.php">Cancel</a>
 		</header>
 
+		<!-- ──── Form ───────────────────────────────────────────────────────────────────────────── -->
 		<section class="wrapper">
 			<form class="form" action="add.php" method="post" name="form1">
-				
+
+				<!-- Firstname -->
 				<div class="form__group form-group">
 					<label class="sr-only" for="reg-form__firstname">Firstname</label>
 					<div class="input input-group">
@@ -37,6 +40,7 @@
 					</div>
 				</div>
 
+				<!-- Lastname -->
 				<div class="form__group form-group">
 					<label class="sr-only" for="reg-form__lastname">Lastname</label>
 					<div class="input input-group">
@@ -48,7 +52,8 @@
 						<input name="lastname" class="input__input form-control" type="text" id="reg-form__lastname" aria-describedby="user lastname" placeholder="Lastname" required="required"/>
 					</div>
 				</div>
-				
+
+				<!-- Email -->
 				<div class="form__group form-group">
 					<label class="sr-only" for="reg-form__email">Email</label>
 					<div class="input input-group">
@@ -60,17 +65,18 @@
 						<input name="email" class="input__input form-control" type="email" id="reg-form__email" aria-describedby="user email" placeholder="Email" required="required"/>
 					</div>
 				</div>
-				
+
+				<!-- Message -->
 				<div class="form__group form-group">
-					<label class="sr-only" for="reg-form__email">Email</label>
+					<label class="sr-only" for="reg-form__email">Message</label>
 					<textarea name="message" class="input__input form-control" type="text" id="reg-form__email" aria-describedby="your message" placeholder="Your message" rows="10" cols="50" required="required"/></textarea>
 				</div>
 
+				<!-- Submit Button -->
 				<button name="Submit" class="form__btn btn" type="submit">Add</button>
 
 			</form>
 		</section>
-
 	</div>
 </body>
 </html>

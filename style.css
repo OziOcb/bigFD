@@ -1,3 +1,4 @@
+/* I don't need to reset/normalize CSS because Bootstrap does that */
 /* ──── base ───────────────────────────────────────────────────────────────────────────── */
 html {
   font-size: 62.5%;
@@ -9,19 +10,50 @@ body {
   line-height: 1.6;
 }
 
-/* ────  ───────────────────────────────────────────────────────────────────────────── */
-.jumbotron {
+/* ──── Header ───────────────────────────────────────────────────────────────────────────── */
+.header {
+  color: #eee;
+  text-align: center;
+  border-radius: 0;
   background: url('https://images.unsplash.com/photo-1490822061517-61b5e64bf21c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=f913e2f9c6555c1ba5c7d19e3a151b2e&auto=format&fit=crop&w=1050&q=80') no-repeat center center;
   background-size: cover;
 }
 
-.header__btn {
-  background: #B2D548;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+.header__title {
+  font-size: 4.6rem;
+  margin-bottom: 2rem;
+  font-weight: 200;
 }
 
-.header__btn:hover {
+.header__desc {
+  margin-bottom: 5rem;
+}
+
+
+/* ──── .button ───────────────────────────────────────────────────────────────────────────── */
+.button {
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 1.6rem;
+  padding: .6em 1.2em;
+}
+
+.button--primary {
+  background: #B2D548;
+}
+
+.button--primary:hover {
   background: #28A9C9;
+  color: #fff;
+}
+
+.button--danger {
+  background: #DC3545;
+}
+
+.button--danger:hover {
+  background: #980101;
+  color: #fff;
 }
 
 /* ──── messages ───────────────────────────────────────────────────────────────────────────── */
