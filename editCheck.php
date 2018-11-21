@@ -36,7 +36,7 @@
 
         // Check if an input is equal to the regular expression
         function regExp($input){
-          return preg_match_all("|<[^>]+>(.*)</[^>]+>|U", $input);
+          return preg_match_all("/[^a-zA-Z\s\d\.,!?]+/U", $input);
         }
 
         // Prevent from passing malicious code into any field
