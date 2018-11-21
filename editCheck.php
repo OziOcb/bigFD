@@ -34,6 +34,20 @@
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $msg = mysqli_real_escape_string($conn, $_POST['message']);
 
+        // Check if an input is equal to the regular expression
+        function regExp($input){
+          return preg_match_all("|<[^>]+>(.*)</[^>]+>|U", $input);
+        }
+
+        // Prevent from passing malicious code into any field
+        if(regExp($firstname) == true || regExp($lastname) == true || regExp($msg) == true) {
+            // Display warning
+            echo "<h2 class='error'>Something went wrong. Please, try again.</h2>";
+            echo "<br/><a class='button button--primary btn' href='javascript:self.history.back();'>Try Again</a>";
+            echo "<a class='button button--danger btn ml-5' href='index.php'>Cancel</a>";
+            exit();
+        }
+
         // Check empty fields
         if(empty($firstname) || empty($lastname) || empty($email) || empty($msg)) {
 
